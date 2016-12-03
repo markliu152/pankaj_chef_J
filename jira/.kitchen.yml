@@ -1,0 +1,20 @@
+---
+driver:
+  name: vagrant
+  network:
+  - ["private_network", { ip: "192.168.33.10" }]
+
+provisioner:
+  name: chef_zero
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: centos-7.2
+
+suites:
+  - name: jiraserver
+    run_list:
+      - recipe[jira::default]
+    attributes:

@@ -1,0 +1,32 @@
+<jira-database-config>
+  <name>defaultDS</name>
+  <delegator-name>default</delegator-name>
+
+  <!--<database-type>postgres72</database-type>-->
+  <database-type>h2</database-type>
+  <schema-name>public</schema-name>
+
+  <jdbc-datasource>
+
+    <!--<url>jdbc:postgresql://<%= node['jira']['dbhost'] %>:<%= node['jira']['dbport'] %>/<%= node['jira']['dbname'] %></url>
+    <driver-class>org.postgresql.Driver</driver-class>-->
+    <url>jdbc:h2:file:/<%= node['jira']['home_path']%>/database/h2jiradb</url>
+    <driver-class>org.h2.Driver</driver-class>
+
+    <validation-query>select version();</validation-query>
+    <pool-test-on-borrow>false</pool-test-on-borrow>
+    <username>sa</username>
+    <password></password>
+    <!--<username><%= node['jira']['dbuser'] %></username>
+    <password><%= node['jira']['dbpassword'] %></password>-->
+    <pool-min-size><%= node['jira']['dbpool-min-size'] %></pool-min-size>
+    <pool-max-idle><%= node['jira']['dbpool-max-idle'] %></pool-max-idle>
+    <pool-max-size><%= node['jira']['dbpool-max-size'] %></pool-max-size>
+    <pool-max-wait><%= node['jira']['dbpool-max-wait'] %></pool-max-wait>
+    <pool-remove-abandoned>true</pool-remove-abandoned>
+    <pool-remove-abandoned-timeout>300</pool-remove-abandoned-timeout>
+    <pool-test-while-idle>true</pool-test-while-idle>
+    <min-evictable-idle-time-millis>60000</min-evictable-idle-time-millis>
+    <time-between-eviction-runs-millis>300000</time-between-eviction-runs-millis>
+  </jdbc-datasource>
+</jira-database-config>
